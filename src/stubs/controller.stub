@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\{{model}};
+use App\Http\Requests\Store{{model}}Request;
+use App\Http\Requests\Update{{model}}Request;
+
+class {{model}}Controller extends Controller
+{
+    public function index(): \Illuminate\Contracts\View\View
+    {
+        ${{resource}} = {{model}}::all();
+        return view('{{resource}}.index', compact('{{resource}}'));
+    }
+
+    public function create(): \Illuminate\Contracts\View\View
+    {
+        return view('{{resource}}.create');
+    }
+
+    public function store(Store{{model}}Request $request): \Illuminate\Http\RedirectResponse
+    {
+        {{model}}::create($request->validated());
+        return redirect()->route('{{resource}}.index');
+    }
+
+    public function edit({{model}} ${{variable}}): \Illuminate\Contracts\View\View
+    {
+        return view('{{resource}}.edit', compact('{{variable}}'));
+    }
+
+    public function update(Update{{model}}Request $request, {{model}} ${{variable}}): \Illuminate\Http\RedirectResponse
+    {
+        ${{variable}}->update($request->validated());
+        return redirect()->route('{{resource}}.index');
+    }
+
+    public function destroy({{model}} ${{variable}}): \Illuminate\Http\RedirectResponse
+    {
+        ${{variable}}->delete();
+        return redirect()->route('{{resource}}.index');
+    }
+}

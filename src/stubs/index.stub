@@ -1,0 +1,26 @@
+<h1>{{model}} Index</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            {{headers}}
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(${{resource}} as ${{variable}})
+            <tr>
+                <td>${{variable}}->id</td>
+                {{rows}}
+                <td>
+                    <a href="{{ route('{{resource}}.edit', ${{variable}}) }}">Edit</a>
+                    <form action="{{ route('{{resource}}.destroy', ${{variable}}) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>

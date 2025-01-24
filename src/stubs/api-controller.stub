@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\{{model}};
+use App\Http\Requests\Store{{model}}Request;
+use App\Http\Requests\Update{{model}}Request;
+use App\Resources\{{model}}Resource;
+
+
+class {{model}}Controller extends Controller
+{
+    public function index()
+    {
+        return {{model}}Resource::collection({{model}}::all());
+    }
+
+    public function store(Store{{model}}Request $request)
+    {
+        ${{variable}} = {{model}}::create($request->validated());
+        return {{model}}Resource::make(${{variable}});
+    }
+
+    public function show({{model}} ${{variable}})
+    {
+        return {{model}}Resource::make(${{variable}});
+    }
+
+    public function update(Update{{model}}Request $request, {{model}} ${{variable}})
+    {
+        ${{variable}}->update($request->validated());
+        return {{model}}Resource::make(${{variable}});
+    }
+
+    public function destroy({{model}} ${{variable}})
+    {
+        ${{variable}}->delete();
+        return response()->noContent();
+    }
+}

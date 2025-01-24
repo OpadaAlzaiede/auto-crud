@@ -1,0 +1,11 @@
+<h1>Create {{$model}}</h1>
+<form action="{{ route('{{resource}}.store') }}" method="POST">
+    @csrf
+    <div>
+        {{inputs}}
+        @error('{{$column}}')
+            <div>{{ $message }}</div>
+        @enderror
+    </div>
+    <button type="submit">Create</button>
+</form>

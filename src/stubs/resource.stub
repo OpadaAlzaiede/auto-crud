@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Resources\Json\{{resource}};
+
+class {{model}}{{resource}} extends {{resource}}
+{
+    public function toArray($request): array
+    {
+        return [
+            // Define resource fields here
+        ];
+    }
+}
