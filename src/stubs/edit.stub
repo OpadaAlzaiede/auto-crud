@@ -2,14 +2,8 @@
 <form action="{{ route('{{resource}}.update', ${{variable}}) }}" method="POST">
     @csrf
     @method('PUT')
-    @foreach($columns as $column)
         <div>
-            <label for="{{$column}}">{{ $column }}</label>
-            <input type="text" name="{{$column}}" id="{{$column}}" value="{{ ${{variable}}->{$column} }}">
-            @error('{{$column}}')
-                <div>{{ $message }}</div>
-            @enderror
+            {{inputs}}
         </div>
-    @endforeach
     <button type="submit">Update</button>
 </form>

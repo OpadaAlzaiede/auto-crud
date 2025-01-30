@@ -12,16 +12,17 @@ class MakeCrudCommand extends Command
 
     protected $description = 'Generate CRUD operations for a model.';
 
-    public function handle(CrudGenerator $generator): void {
+    public function handle(CrudGenerator $generator): void
+    {
 
         $model = ucfirst($this->argument('model'));
         $isApi = $this->option('api');
-        
+
         $columns = [];
         $this->info("Let's define the columns for the $model table.");
         while ($this->confirm('Do you want to add a column?')) {
-            $name = $this->ask('Enter the column name:');
-            $type = $this->choice('Select the column type:', [
+            $name = $this->ask('Enter the column name');
+            $type = $this->choice('Select the column type', [
                 'string', 'integer', 'date', 'datetime'
             ]);
             $columns[] = compact('name', 'type');

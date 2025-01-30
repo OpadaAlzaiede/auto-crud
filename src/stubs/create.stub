@@ -3,9 +3,6 @@
     @csrf
     <div>
         {{inputs}}
-        @error('{{$column}}')
-            <div>{{ $message }}</div>
-        @enderror
     </div>
     <button type="submit">Create</button>
 </form>

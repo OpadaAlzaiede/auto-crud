@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{{model}};
 use App\Http\Requests\Store{{model}}Request;
 use App\Http\Requests\Update{{model}}Request;
-use App\Resources\{{model}}Resource;
+use App\Resources\Http\{{model}}Resource;
 
 
 class {{model}}Controller extends Controller
