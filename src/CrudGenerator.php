@@ -15,7 +15,6 @@ use ObadaAz\AutoCrud\Generators\{
     ResourceGenerator
 };
 
-
 class CrudGenerator
 {
     protected string $model;
@@ -29,27 +28,38 @@ class CrudGenerator
         protected RouteGenerator $routeGenerator,
         protected ViewGenerator $viewGenerator,
         protected ResourceGenerator $resourceGenerator
-    )
-    {
-        
+    ) {
+        //
     }
 
+    /**
+     * @param string $model
+     *
+     * @return self
+     */
     public function setModel(string $model): self
     {
-
         $this->model = $model;
 
         return $this;
     }
 
+    /**
+     * @param array $columns
+     *
+     * @return self
+     */
     public function setColumns(array $columns): self
     {
-
         $this->columns = $columns;
 
         return $this;
     }
 
+    /**
+     * @param bool $isApi
+     *
+     */
     public function generate(bool $isApi = false): void
     {
         $this->migrationGenerator->generate($this->model, $this->columns);

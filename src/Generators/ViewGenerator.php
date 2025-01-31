@@ -12,6 +12,11 @@ class ViewGenerator
         //
     }
 
+    /**
+     * @param string $model
+     * @param array $columns
+     *
+     */
     public function generate(string $model, array $columns): void
     {
         $views = ['index', 'create', 'edit'];
@@ -34,6 +39,13 @@ class ViewGenerator
         }
     }
 
+    /**
+     * @param string $stub
+     * @param array $columns
+     * @param string $variable
+     *
+     * @return string
+     */
     protected function buildViewTableContent(string $stub, array $columns, string $variable): string
     {
         $headers = "";
@@ -54,6 +66,12 @@ class ViewGenerator
         );
     }
 
+    /**
+     * @param string $stub
+     * @param array $columns
+     *
+     * @return string
+     */
     protected function buildViewFormContent(string $stub, array $columns): string
     {
         $inputs = "";

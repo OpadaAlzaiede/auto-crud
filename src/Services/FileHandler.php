@@ -6,6 +6,12 @@ use Illuminate\Support\Facades\File;
 
 class FileHandler
 {
+    /**
+     * @param string $stub
+     * @param array $replacements
+     *
+     * @return string
+     */
     public function getStubContent(string $stub, array $replacements): string
     {
         $content = File::get(__DIR__ . "/../stubs/$stub");
@@ -17,12 +23,22 @@ class FileHandler
         return $content;
     }
 
+    /**
+     * @param string $path
+     * @param string $content
+     *
+     */
     public function createFile(string $path, string $content): void
     {
         File::ensureDirectoryExists(dirname($path));
         File::put($path, $content);
     }
 
+    /**
+     * @param string $path
+     * @param string $content
+     *
+     */
     public function appendToFile(string $path, string $content): void
     {
         File::append($path, $content . "\n");

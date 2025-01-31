@@ -12,6 +12,11 @@ class MigrationGenerator
         //
     }
 
+    /**
+     * @param string $model
+     * @param array $columns
+     *
+     */
     public function generate(string $model, array $columns): void
     {
         $stub = $this->fileHandler->getStubContent('migration.stub', [
@@ -26,6 +31,13 @@ class MigrationGenerator
         $this->fileHandler->createFile($path, $content);
     }
 
+    /**
+     * @param string $stub
+     * @param string $model
+     * @param array $columns
+     *
+     * @return string
+     */
     protected function buildMigrationContent(string $stub, string $model, array $columns): string
     {
         $table = Str::plural(strtolower($model));

@@ -4,6 +4,11 @@ namespace ObadaAz\AutoCrud\ColumnTypes;
 
 class ColumnTypeFactory
 {
+    /**
+     * @param string $type
+     *
+     * @return ColumnType
+     */
     public static function make(string $type): ColumnType
     {
         return match ($type) {

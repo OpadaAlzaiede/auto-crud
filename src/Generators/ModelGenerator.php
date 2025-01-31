@@ -6,13 +6,17 @@ use ObadaAz\AutoCrud\Services\FileHandler;
 
 class ModelGenerator
 {
-
     public function __construct(protected FileHandler $fileHandler)
     {
         //
     }
-    
 
+
+    /**
+     * @param string $model
+     * @param array $columns
+     *
+     */
     public function generate(string $model, array $columns): void
     {
         $stub = 'model.stub';

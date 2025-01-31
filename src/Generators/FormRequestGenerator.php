@@ -12,6 +12,11 @@ class FormRequestGenerator
         //
     }
 
+    /**
+     * @param string $model
+     * @param array $columns
+     *
+     */
     public function generate(string $model, array $columns): void
     {
         $requests = ['Store', 'Update'];
@@ -34,6 +39,11 @@ class FormRequestGenerator
         }
     }
 
+    /**
+     * @param array $rules
+     *
+     * @return string
+     */
     protected function formatRules(array $rules): string
     {
         $formattedRules = [];

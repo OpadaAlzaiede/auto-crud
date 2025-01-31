@@ -12,6 +12,11 @@ class RouteGenerator
         //
     }
 
+    /**
+     * @param string $model
+     * @param bool $isApi
+     *
+     */
     public function generate(string $model, bool $isApi): void
     {
         $stub = $isApi ? 'api-routes.stub' : 'web-routes.stub';

@@ -14,7 +14,6 @@ class MakeCrudCommand extends Command
 
     public function handle(CrudGenerator $generator): void
     {
-
         $model = ucfirst($this->argument('model'));
         $isApi = $this->option('api');
 

@@ -11,6 +11,11 @@ class ResourceGenerator
         //
     }
 
+    /**
+     * @param string $model
+     * @param array $columns
+     *
+     */
     public function generate(string $model, array $columns): void
     {
         $content = $this->fileHandler->getStubContent("resource.stub", [
@@ -22,6 +27,13 @@ class ResourceGenerator
         $this->fileHandler->createFile($path, $content);
     }
 
+
+    /**
+     * @param string $stub
+     * @param array $columns
+     *
+     * @return string
+     */
     protected function buildResourceContent(string $stub, array $columns): string
     {
         $fields = [];
