@@ -3,9 +3,11 @@
 namespace ObadaAz\AutoCrud\Generators;
 
 use Illuminate\Support\Str;
+use ObadaAz\AutoCrud\Contexts\GeneratorContext;
+use ObadaAz\AutoCrud\Contracts\GeneratorContract;
 use ObadaAz\AutoCrud\Services\FileHandler;
 
-class ControllerGenerator
+class ControllerGenerator implements GeneratorContract
 {
     public function __construct(protected FileHandler $fileHandler)
     {
@@ -13,12 +15,14 @@ class ControllerGenerator
     }
 
     /**
-     * @param string $model
-     * @param bool $isApi
+     * @param GeneratorContext $generatorContext
      *
      */
-    public function generate(string $model, bool $isApi): void
+    public function generate(GeneratorContext $generatorContext): void
     {
+        $model = $generatorContext->model;
+        $isApi = $generatorContext->isApi;
+
         $stub = $isApi ? 'api-controller.stub' : 'controller.stub';
         $variable = Str::lower($model);
 

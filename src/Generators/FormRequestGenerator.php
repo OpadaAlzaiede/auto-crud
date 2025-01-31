@@ -4,8 +4,10 @@ namespace ObadaAz\AutoCrud\Generators;
 
 use ObadaAz\AutoCrud\Services\FileHandler;
 use ObadaAz\AutoCrud\ColumnTypes\ColumnTypeFactory;
+use ObadaAz\AutoCrud\Contexts\GeneratorContext;
+use ObadaAz\AutoCrud\Contracts\GeneratorContract;
 
-class FormRequestGenerator
+class FormRequestGenerator implements GeneratorContract
 {
     public function __construct(protected FileHandler $fileHandler)
     {
@@ -13,12 +15,14 @@ class FormRequestGenerator
     }
 
     /**
-     * @param string $model
-     * @param array $columns
+     * @param GeneratorContext $generatorContext
      *
      */
-    public function generate(string $model, array $columns): void
+    public function generate(GeneratorContext $generatorContext): void
     {
+        $model = $generatorContext->model;
+        $columns = $generatorContext->columns;
+
         $requests = ['Store', 'Update'];
 
         foreach ($requests as $request) {

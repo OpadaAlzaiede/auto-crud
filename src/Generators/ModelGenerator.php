@@ -2,9 +2,11 @@
 
 namespace ObadaAz\AutoCrud\Generators;
 
+use ObadaAz\AutoCrud\Contexts\GeneratorContext;
+use ObadaAz\AutoCrud\Contracts\GeneratorContract;
 use ObadaAz\AutoCrud\Services\FileHandler;
 
-class ModelGenerator
+class ModelGenerator implements GeneratorContract
 {
     public function __construct(protected FileHandler $fileHandler)
     {
@@ -13,12 +15,14 @@ class ModelGenerator
 
 
     /**
-     * @param string $model
-     * @param array $columns
+     * @param GeneratorContext $generatorContext
      *
      */
-    public function generate(string $model, array $columns): void
+    public function generate(GeneratorContext $generatorContext): void
     {
+        $model = $generatorContext->model;
+        $columns = $generatorContext->columns;
+
         $stub = 'model.stub';
         $columnNames = array_column($columns, 'name');
         $columnsString = "'" . implode("', '", $columnNames) . "'";

@@ -3,9 +3,11 @@
 namespace ObadaAz\AutoCrud\Generators;
 
 use Illuminate\Support\Str;
+use ObadaAz\AutoCrud\Contexts\GeneratorContext;
+use ObadaAz\AutoCrud\Contracts\GeneratorContract;
 use ObadaAz\AutoCrud\Services\FileHandler;
 
-class ViewGenerator
+class ViewGenerator implements GeneratorContract
 {
     public function __construct(protected FileHandler $fileHandler)
     {
@@ -13,12 +15,14 @@ class ViewGenerator
     }
 
     /**
-     * @param string $model
-     * @param array $columns
+     * @param GeneratorContext $generatorContext
      *
      */
-    public function generate(string $model, array $columns): void
+    public function generate(GeneratorContext $generatorContext): void
     {
+        $model = $generatorContext->model;
+        $columns = $generatorContext->columns;
+
         $views = ['index', 'create', 'edit'];
         $variable = Str::lower($model);
         $resource = Str::plural($variable);

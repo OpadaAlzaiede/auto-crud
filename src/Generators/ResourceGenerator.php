@@ -2,9 +2,11 @@
 
 namespace ObadaAz\AutoCrud\Generators;
 
+use ObadaAz\AutoCrud\Contexts\GeneratorContext;
+use ObadaAz\AutoCrud\Contracts\GeneratorContract;
 use ObadaAz\AutoCrud\Services\FileHandler;
 
-class ResourceGenerator
+class ResourceGenerator implements GeneratorContract
 {
     public function __construct(protected FileHandler $fileHandler)
     {
@@ -12,12 +14,14 @@ class ResourceGenerator
     }
 
     /**
-     * @param string $model
-     * @param array $columns
+     * @param GeneratorContext $generatorContext
      *
      */
-    public function generate(string $model, array $columns): void
+    public function generate(GeneratorContext $generatorContext): void
     {
+        $model = $generatorContext->model;
+        $columns = $generatorContext->columns;
+
         $content = $this->fileHandler->getStubContent("resource.stub", [
             '{{model}}' => $model
         ]);

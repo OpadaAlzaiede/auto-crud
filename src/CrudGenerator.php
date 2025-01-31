@@ -2,9 +2,8 @@
 
 namespace ObadaAz\AutoCrud;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
-use ObadaAz\AutoCrud\ColumnTypes\ColumnTypeFactory;
+
+use ObadaAz\AutoCrud\Contexts\GeneratorContext;
 use ObadaAz\AutoCrud\Generators\{
     ModelGenerator,
     ControllerGenerator,
@@ -62,18 +61,20 @@ class CrudGenerator
      */
     public function generate(bool $isApi = false): void
     {
-        $this->migrationGenerator->generate($this->model, $this->columns);
-        $this->modelGenerator->generate($this->model, $this->columns);
-        $this->controllerGenerator->generate($this->model, $isApi);
-        $this->formRequestGenerator->generate($this->model, $this->columns);
-        $this->routeGenerator->generate($this->model, $isApi);
+        $generatorContext = new GeneratorContext($this->model, $this->columns, $isApi);
+
+        $this->migrationGenerator->generate($generatorContext);
+        $this->modelGenerator->generate($generatorContext);
+        $this->controllerGenerator->generate($generatorContext);
+        $this->formRequestGenerator->generate($generatorContext);
+        $this->routeGenerator->generate($generatorContext);
 
         if (!$isApi) {
-            $this->viewGenerator->generate($this->model, $this->columns);
+            $this->viewGenerator->generate($generatorContext);
         }
 
         if ($isApi) {
-            $this->resourceGenerator->generate($this->model, $this->columns);
+            $this->resourceGenerator->generate($generatorContext);
         }
     }
 }
